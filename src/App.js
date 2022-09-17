@@ -5,72 +5,30 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { BASE_URL } from './utils/commons';
+import { sortData, employeeProperties } from './utils/helpers';
+import { useEmployeeData } from './contexts/EmployeeContext';
 
 import './App.css';
 
-const BASE_URL =
-  'https://opensheet.elk.sh/1gH5Kle-styszcHF2G0H8l1w1nDt1RhO9NHNCpHhKK0M/employees';
-
 function App() {
-  const [data, setData] = useState({});
-  const [filteredData, setFilteredData] = useState({});
+  const { data, setData } = useEmployeeData();
+  const { filteredData, setFilteredData } = useEmployeeData();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortValue, setSortValue] = useState('default');
-  const employeeProperties = [
-    'First name',
-    'Last name',
-    'Address',
-    'Designation',
-    'ID',
-    'Manager ID',
-    'Salary',
-    'Date of birth',
-    'Date of joining',
-  ];
+
+  const sortedData = useCallback(() => {
+    if (sortValue === 'default') {
+      return sortData(data, sortValue);
+    }
+    return sortData(data, sortValue);
+  }, [sortValue, data]);
 
   const handleChange = useCallback((e) => {
     setSearchTerm(e.target.value);
-    filterRows();
   });
 
-  const fetchData = async () => {
-    try {
-      const res = await fetch(BASE_URL);
-      const data = await res.json();
-      setData(data);
-      setFilteredData(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const filterRows = () => {
-    if (searchTerm === '' || searchTerm === ' ') {
-      return;
-    }
-    const queriedData = data?.filter(
-      ({
-        first_name,
-        details,
-        last_name,
-        address,
-        designation,
-        id,
-        manager_id,
-        salary,
-        date_of_birth,
-        date_of_joining,
-      }) => first_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    console.log('queried data', queriedData);
-    setFilteredData(queriedData);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log(filteredData, searchTerm);
+  console.log(searchTerm, sortValue, sortedData());
   return (
     <div className="App">
       <div className="nav">
@@ -83,23 +41,30 @@ function App() {
           />
         </div>
         <div className="sorter">
-          <FormControl>
+          <FormControl className="select">
             <InputLabel>Sort by</InputLabel>
             <Select
               value={sortValue}
               label="Sort By"
               onChange={(e) => setSortValue(e.target.value)}
+              defaultValue="Default"
             >
-              <MenuItem value="default">Default</MenuItem>
-              {employeeProperties.map((item) => (
-                <MenuItem value={item}>{item}</MenuItem>
+              <MenuItem value="id">Default</MenuItem>
+              {employeeProperties.map((item, index) => (
+                <MenuItem key={index} value={item.key}>
+                  {item.label}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
         </div>
       </div>
 
-      <EmployeeTable className="employee-table" employees={filteredData} />
+      <EmployeeTable
+        className="employee-table"
+        employees={sortedData()}
+        query={searchTerm}
+      />
     </div>
   );
 }

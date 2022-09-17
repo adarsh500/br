@@ -9,11 +9,8 @@ import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import './EmployeeTable.css';
 
-const BASE_URL =
-  'https://opensheet.elk.sh/1gH5Kle-styszcHF2G0H8l1w1nDt1RhO9NHNCpHhKK0M/';
-
 const EmployeeTable = (props) => {
-  const { employees } = props;
+  const { employees, query } = props;
 
   if (!employees?.length) {
     return <h4>No employees found</h4>;
@@ -36,36 +33,51 @@ const EmployeeTable = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {employees?.map(
-              ({
-                first_name,
-                details,
-                last_name,
-                address,
-                designation,
-                id,
-                manager_id,
-                salary,
-                date_of_birth,
-                date_of_joining,
-              }) => (
-                <TableRow key={id}>
-                  <TableCell component="th" scope="row">
-                    <Link to={`/${first_name.toLowerCase()}`}>{id}</Link>
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {first_name}
-                  </TableCell>
-                  <TableCell align="center">{last_name}</TableCell>
-                  <TableCell align="center">{address}</TableCell>
-                  <TableCell align="center">{designation}</TableCell>
-                  <TableCell align="center">{manager_id}</TableCell>
-                  <TableCell align="center">{salary}</TableCell>
-                  <TableCell align="center">{date_of_birth}</TableCell>
-                  <TableCell align="center">{date_of_joining}</TableCell>
-                </TableRow>
+            {employees
+              ?.filter(
+                ({
+                  first_name,
+                  details,
+                  last_name,
+                  address,
+                  designation,
+                  id,
+                  manager_id,
+                  salary,
+                  date_of_birth,
+                  date_of_joining,
+                }) => first_name.toLowerCase().includes(query.toLowerCase())
               )
-            )}
+              ?.map(
+                ({
+                  first_name,
+                  details,
+                  last_name,
+                  address,
+                  designation,
+                  id,
+                  manager_id,
+                  salary,
+                  date_of_birth,
+                  date_of_joining,
+                }) => (
+                  <TableRow key={id}>
+                    <TableCell component="th" scope="row">
+                      <Link to={`/${id.toLowerCase()}`}>{id}</Link>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {first_name}
+                    </TableCell>
+                    <TableCell align="center">{last_name}</TableCell>
+                    <TableCell align="center">{address}</TableCell>
+                    <TableCell align="center">{designation}</TableCell>
+                    <TableCell align="center">{manager_id}</TableCell>
+                    <TableCell align="center">{salary}</TableCell>
+                    <TableCell align="center">{date_of_birth}</TableCell>
+                    <TableCell align="center">{date_of_joining}</TableCell>
+                  </TableRow>
+                )
+              )}
           </TableBody>
         </Table>
       </TableContainer>
