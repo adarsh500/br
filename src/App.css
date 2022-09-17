@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: rgb(235, 235, 235);
+  height: auto;
+  padding: 3rem;
 }
 
 .App-logo {
@@ -28,11 +31,16 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchbar {
+  margin-bottom: 30px;
+}
+
+.sorter {
+  width: 100%;
 }
