@@ -22,10 +22,9 @@ export const EmployeeProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  console.log('now i have data', data);
   return (
     <EmployeeContext.Provider
-      value={{ data, setData, filteredData, setFilteredData }}
+      value={{ loading: !data.length, data, setData, filteredData, setFilteredData }}
     >
       {children}
     </EmployeeContext.Provider>

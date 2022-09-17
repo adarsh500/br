@@ -38,6 +38,15 @@ const sortData = (data, sortKey) => {
   return sortedData;
 };
 
+const capitalize = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+const beautify = (attribute) => {
+  const result = attribute.replaceAll('_', ' ');
+  return capitalize(result);
+};
+
 const employeeProperties = [
   { label: 'First name', key: 'first_name' },
   { label: 'Last name', key: 'last_name' },
@@ -49,4 +58,11 @@ const employeeProperties = [
   { label: 'Date of joining', key: 'date_of_joining' },
 ];
 
-export { exists, removeCommas, normalizeDates, sortData, employeeProperties };
+export {
+  exists,
+  removeCommas,
+  normalizeDates,
+  sortData,
+  employeeProperties,
+  beautify,
+};

@@ -1,7 +1,10 @@
 .container {
   text-align: center;
   background-color: rgb(235, 235, 235);
-  min-height: 100vh;
+  min-height: 90vh;
   height: auto;
   padding: 3rem;
+}
+
+.detail-table {
 }
