@@ -20,12 +20,12 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortValue, setSortValue] = useState('default');
 
-  const sortedData = useCallback(() => {
+  const sortedData = () => {
     if (sortValue === 'default') {
       return sortData(data, sortValue);
     }
     return sortData(data, sortValue);
-  }, [sortValue, data]);
+  };
 
   const handleChange = useCallback((e) => {
     setSearchTerm(e.target.value);
@@ -49,7 +49,7 @@ function App() {
         <div className="sorter">
           <FormControl className="select">
             <InputLabel>Sort by</InputLabel>
-            <Select 
+            <Select
               value={sortValue}
               label="Sort By"
               onChange={(e) => setSortValue(e.target.value)}

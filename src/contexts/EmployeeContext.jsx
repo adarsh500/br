@@ -5,6 +5,7 @@ const EmployeeContext = createContext({});
 
 export const EmployeeProvider = ({ children }) => {
   const [data, setData] = useState({});
+  const [defaultData, setDefaultData] = useState({});
   const [filteredData, setFilteredData] = useState({});
 
   const fetchData = async () => {
@@ -13,6 +14,7 @@ export const EmployeeProvider = ({ children }) => {
       const data = await res.json();
       setData(data);
       setFilteredData(data);
+      setDefaultData(data);
     } catch (err) {
       console.error(err);
     }
@@ -24,7 +26,14 @@ export const EmployeeProvider = ({ children }) => {
 
   return (
     <EmployeeContext.Provider
-      value={{ loading: !data.length, data, setData, filteredData, setFilteredData }}
+      value={{
+        loading: !data.length,
+        defaultData,
+        data,
+        setData,
+        filteredData,
+        setFilteredData,
+      }}
     >
       {children}
     </EmployeeContext.Provider>

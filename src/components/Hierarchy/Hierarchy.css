@@ -1,3 +1,11 @@
+.tree {
+  background-color: rgb(235, 235, 235);
+  height: auto;
+  padding: 3rem;
+  min-height: 90vh;
+  height: max-content;
+}
+
 .parent {
   margin-left: 25px;
 }

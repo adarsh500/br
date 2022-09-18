@@ -39,48 +39,16 @@ const Tree = (props) => {
 };
 
 const Heirarchy = () => {
-  const { loading, data } = useEmployeeData();
-  let firstSet;
+  const { loading, defaultData } = useEmployeeData();
 
   if (loading) {
     return 'loading...';
   }
 
-  if (!loading) {
-    firstSet = fetchEmployees(data, 'emp001');
-  }
-
-  console.log('core', data[0]);
-
   return (
     <div className="tree">
-      {/* {firstSet?.map((item) => {
-        const children = fetchEmployees(data, item.manager_id);
-        console.log(children);
-        if (!!children.length) {
-          return (
-            <div key={item.id}>
-              <h3 key={item.id}>
-                {item.id} {item.first_name}
-              </h3>
-              <div>
-                <Tree data={children} />
-              </div>
-            </div>
-          );
-        }
-        return (
-          <h3 key={item.id}>
-            {item.id}
-            {item.first_name}
-          </h3>
-        );
-      })} */}
-      <h3 className="parent" key={data[0].id}>
-        {data[0].id} {data[0].first_name}
-      </h3>
-      <div className="child">
-        <Tree data={data} startData={firstSet} />
+      <div className="parent">
+        <Tree data={defaultData} startData={defaultData.slice(0, 1)} />
       </div>
     </div>
   );
