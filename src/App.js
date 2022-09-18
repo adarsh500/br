@@ -13,8 +13,7 @@ import { useEmployeeData } from './contexts/EmployeeContext';
 import './App.css';
 
 function App() {
-  const { data, setData } = useEmployeeData();
-  const { filteredData, setFilteredData } = useEmployeeData();
+  const { data } = useEmployeeData();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortValue, setSortValue] = useState('default');
 
