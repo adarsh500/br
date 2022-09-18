@@ -1,13 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import EmployeeTable from './components/EmployeeTable';
 import { Link } from 'react-router-dom';
-
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { BASE_URL } from './utils/commons';
 import { sortData } from './utils/helpers';
 import { employeeProperties } from './utils/commons';
 import { useEmployeeData } from './contexts/EmployeeContext';
@@ -27,9 +25,9 @@ function App() {
     return sortData(data, sortValue);
   };
 
-  const handleChange = useCallback((e) => {
+  const handleChange = (e) => {
     setSearchTerm(e.target.value);
-  });
+  };
 
   console.log(searchTerm, sortValue, sortedData());
   return (
