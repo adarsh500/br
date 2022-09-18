@@ -1,11 +1,7 @@
 import { Table, TableCell } from '@mui/material';
-import React, { useState } from 'react';
-import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useEmployeeData } from '../../contexts/EmployeeContext';
 import { beautify } from '../../utils/helpers';

@@ -37,7 +37,6 @@ const EmployeeTable = (props) => {
               ?.filter(
                 ({
                   first_name,
-                  details,
                   last_name,
                   address,
                   designation,
@@ -51,7 +50,6 @@ const EmployeeTable = (props) => {
               ?.map(
                 ({
                   first_name,
-                  details,
                   last_name,
                   address,
                   designation,
@@ -62,12 +60,10 @@ const EmployeeTable = (props) => {
                   date_of_joining,
                 }) => (
                   <TableRow key={id}>
-                    <TableCell component="th" scope="row">
+                    <TableCell>
                       <Link to={`/${id.toLowerCase()}`}>{id}</Link>
                     </TableCell>
-                    <TableCell component="th" scope="row">
-                      {first_name}
-                    </TableCell>
+                    <TableCell align="center">{first_name}</TableCell>
                     <TableCell align="center">{last_name}</TableCell>
                     <TableCell align="center">{address}</TableCell>
                     <TableCell align="center">{designation}</TableCell>

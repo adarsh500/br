@@ -47,22 +47,23 @@ const beautify = (attribute) => {
   return capitalize(result);
 };
 
-const employeeProperties = [
-  { label: 'First name', key: 'first_name' },
-  { label: 'Last name', key: 'last_name' },
-  { label: 'Address', key: 'address' },
-  { label: 'Designation', key: 'designation' },
-  { label: 'Manager ID', key: 'manager_id' },
-  { label: 'Salary', key: 'salary' },
-  { label: 'Date of birth', key: 'date_of_birth' },
-  { label: 'Date of joining', key: 'date_of_joining' },
-];
+const fetchEmployees = (data, manager_id) => {
+  const set = data.filter(
+    (item) => item.manager_id.toLowerCase() === manager_id.toLowerCase()
+  );
+  return set;
+};
+
+const generateTree = () => {
+
+};
 
 export {
+  generateTree,
+  fetchEmployees,
   exists,
   removeCommas,
   normalizeDates,
   sortData,
-  employeeProperties,
   beautify,
 };

@@ -1,0 +1,9 @@
+.parent {
+  margin-left: 25px;
+}
+
+.child {
+  margin: 0;
+  padding: 0;
+  margin-left: 35px;
+}

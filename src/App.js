@@ -1,12 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import EmployeeTable from './components/EmployeeTable';
+import { Link } from 'react-router-dom';
+
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { BASE_URL } from './utils/commons';
-import { sortData, employeeProperties } from './utils/helpers';
+import { sortData } from './utils/helpers';
+import { employeeProperties } from './utils/commons';
 import { useEmployeeData } from './contexts/EmployeeContext';
 
 import './App.css';
@@ -40,10 +43,13 @@ function App() {
             value={searchTerm}
           />
         </div>
+        <div>
+          <Link to="/hierarchy">hierarchy</Link>
+        </div>
         <div className="sorter">
           <FormControl className="select">
             <InputLabel>Sort by</InputLabel>
-            <Select
+            <Select 
               value={sortValue}
               label="Sort By"
               onChange={(e) => setSortValue(e.target.value)}
