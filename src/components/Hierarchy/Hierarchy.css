@@ -1,3 +1,8 @@
+.node {
+  display: flex;
+  align-content: center;
+}
+
 .tree {
   background-color: rgb(235, 235, 235);
   height: auto;
@@ -7,7 +12,8 @@
 }
 
 .parent {
-  margin-left: 25px;
+  margin: 0 0 15px 15px;
+  font-size: 1.3rem;
 }
 
 .child {

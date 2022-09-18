@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useEmployeeData } from '../../contexts/EmployeeContext';
 import { fetchEmployees } from '../../utils/helpers';
 import './Hierarchy.css';
@@ -12,26 +14,28 @@ const Tree = (props) => {
       {startData?.map((item) => {
         const children = fetchEmployees(data, item.id);
         console.log('this is chlid', children);
-        if (!!children.length) {
+        if (!children.length) {
           return (
-            <div key={item.id}>
-              <h3
-                className="parent"
-                key={item.id}
-                onClick={() => setExpanded(!expanded)}
-              >
-                {item.id} {item.first_name}
-              </h3>
-              <div className="child">
-                {expanded && <Tree data={data} startData={children} />}
-              </div>
-            </div>
+            <p className="parent" key={item.id}>
+              {item.id} {item.first_name}
+            </p>
           );
         }
+
         return (
-          <h3 className="parent" key={item.id}>
-            {item.id} {item.first_name}
-          </h3>
+          <div key={item.id}>
+            <div className="node" onClick={() => setExpanded(!expanded)}>
+              {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              <p className="parent" key={item.id}>
+                {item.id} {item.first_name}
+              </p>
+            </div>
+            {expanded && (
+              <div className="child">
+                <Tree data={data} startData={children} />
+              </div>
+            )}
+          </div>
         );
       })}
     </>
@@ -47,9 +51,7 @@ const Heirarchy = () => {
 
   return (
     <div className="tree">
-      <div className="parent">
-        <Tree data={defaultData} startData={defaultData.slice(0, 1)} />
-      </div>
+      <Tree data={defaultData} startData={defaultData.slice(0, 1)} />
     </div>
   );
 };

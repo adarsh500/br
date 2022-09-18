@@ -45,7 +45,10 @@ const EmployeeTable = (props) => {
                   salary,
                   date_of_birth,
                   date_of_joining,
-                }) => first_name.toLowerCase().includes(query.toLowerCase())
+                }) =>
+                  first_name.toLowerCase().includes(query.toLowerCase()) ||
+                  last_name.toLowerCase().includes(query.toLowerCase()) ||
+                  id.toLowerCase().includes(query.toLowerCase())
               )
               ?.map(
                 ({

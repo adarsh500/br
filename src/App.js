@@ -29,7 +29,7 @@ function App() {
       <div className="nav">
         <div className="searchbar">
           <TextField
-            label="Search..."
+            label="Search by name or id"
             type="search"
             onChange={handleChange}
             value={searchTerm}
