@@ -14,7 +14,7 @@ const Tree = (props) => {
         console.log('this is chlid', children);
         if (!!children.length) {
           return (
-            <>
+            <div key={item.id}>
               <h3
                 className="parent"
                 key={item.id}
@@ -25,7 +25,7 @@ const Tree = (props) => {
               <div className="child">
                 {expanded && <Tree data={data} startData={children} />}
               </div>
-            </>
+            </div>
           );
         }
         return (

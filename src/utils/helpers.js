@@ -19,11 +19,20 @@ const normalizeDates = (date) => {
   return formattedDate;
 };
 
+const capitalize = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+const beautify = (attribute) => {
+  const result = attribute.replaceAll('_', ' ');
+  return capitalize(result);
+};
+
 const sortData = (data, sortKey) => {
-  if (sortKey === 'default') {
+  if (sortKey === 'id') {
     return data;
   }
-  const sortedData = data.sort((a, b) => {
+  const sortedData = data?.slice().sort((a, b) => {
     if (sortKey === 'salary') {
       return removeCommas(a[sortKey]) > removeCommas(b[sortKey]) ? 1 : -1;
     } else if (sortKey === 'date_of_birth' || sortKey === 'date_of_joining') {
@@ -38,15 +47,6 @@ const sortData = (data, sortKey) => {
   return sortedData;
 };
 
-const capitalize = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-const beautify = (attribute) => {
-  const result = attribute.replaceAll('_', ' ');
-  return capitalize(result);
-};
-
 const fetchEmployees = (data, manager_id) => {
   const set = data.filter(
     (item) => item.manager_id.toLowerCase() === manager_id.toLowerCase()
@@ -54,16 +54,14 @@ const fetchEmployees = (data, manager_id) => {
   return set;
 };
 
-const generateTree = () => {
-
-};
+const generateTree = () => {};
 
 export {
   generateTree,
   fetchEmployees,
   exists,
+  sortData,
   removeCommas,
   normalizeDates,
-  sortData,
   beautify,
 };

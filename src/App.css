@@ -3,6 +3,8 @@
   background-color: rgb(235, 235, 235);
   height: auto;
   padding: 3rem;
+  min-height: 90vh;
+  height: max-content;
 }
 
 .App-logo {
@@ -37,10 +39,40 @@
   align-items: center;
 }
 
-.searchbar {
-  margin-bottom: 30px;
+.select {
+  width: 200px;
 }
 
-.select {
-  max-width: 200px;
+@media screen and (max-width: 1024px) {
+  .select {
+    width: 120px;
+  }
+
+  .searchbar {
+    width: 120px;
+  }
+
+  .App {
+    text-align: center;
+    background-color: rgb(235, 235, 235);
+    height: auto;
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .select {
+    width: 100px;
+  }
+
+  .searchbar {
+    width: 100px;
+  }
+
+  .App {
+    text-align: center;
+    background-color: rgb(235, 235, 235);
+    height: auto;
+    padding: 1rem;
+  }
 }

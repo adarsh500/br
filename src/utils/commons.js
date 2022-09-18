@@ -5,6 +5,7 @@ const employeeProperties = [
   { label: 'First name', key: 'first_name' },
   { label: 'Last name', key: 'last_name' },
   { label: 'Address', key: 'address' },
+  { label: 'ID', key: 'id' },
   { label: 'Designation', key: 'designation' },
   { label: 'Manager ID', key: 'manager_id' },
   { label: 'Salary', key: 'salary' },

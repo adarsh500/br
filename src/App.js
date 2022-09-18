@@ -9,18 +9,14 @@ import Select from '@mui/material/Select';
 import { sortData } from './utils/helpers';
 import { employeeProperties } from './utils/commons';
 import { useEmployeeData } from './contexts/EmployeeContext';
-
 import './App.css';
 
 function App() {
   const { data } = useEmployeeData();
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortValue, setSortValue] = useState('default');
+  const [sortValue, setSortValue] = useState('id');
 
   const sortedData = () => {
-    if (sortValue === 'default') {
-      return sortData(data, sortValue);
-    }
     return sortData(data, sortValue);
   };
 
@@ -28,7 +24,6 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
-  console.log(searchTerm, sortValue, sortedData());
   return (
     <div className="App">
       <div className="nav">
@@ -50,9 +45,8 @@ function App() {
               value={sortValue}
               label="Sort By"
               onChange={(e) => setSortValue(e.target.value)}
-              defaultValue="Default"
+              defaultValue="ID"
             >
-              <MenuItem value="id">Default</MenuItem>
               {employeeProperties.map((item, index) => (
                 <MenuItem key={index} value={item.key}>
                   {item.label}
